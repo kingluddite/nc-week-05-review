@@ -1,70 +1,37 @@
 // Example 1
-// ## This works as we expect
-// let varOne = 'Hello from the global scope';
+// We've seen a few ways to define functions:
+// slightly different but largely function similarly
 
-// if (true) {
-//   console.log(varOne);
+// function foo() {
+//   console.log('foo');
 // }
-// Output: Hello from the global scope
+
+// var bar = function () {
+//   console.log('bar');
+// };
+
+// const baz = function () {
+//   console.log('baz');
+// };
 
 // Example 2
-// ## This causes a problem
-// let varOne = 'Hello from the global scope';
 
-// if (true) {
-//   console.log(varOne);
-//   let varTwo = 'Hello from the local scope';
-// }
+// Now we're going to learn a short-hand that has one glaring and very important difference. This is called an arrow function.
 
-// console.log(varTwo);
-// ERROR - varTwo is not defined
+// Let's convert this add function:
 
-// Example 3
-// ### Important scope rule
-// let varOne = 'Hello from the global scope';
+// Start code
+// const add = (num1, num2) => num1 + num2;
+// console.log(add(2,2)); // 4
+// First we replace the function keyword with an arrow:
 
-// if (true) {
-//   console.log(varOne);
-//   let varTwo = 'Hello from the local scope';
-//   console.log(varTwo);
-// }
+// const add = (num1, num2) => {
+//   return num1 + num2;
+// };
 
-// console.log(varTwo);
+// Example 3 - Refactor even more
+// If our function just has one line of logic that we want to return we can eliminate the return keyword and curly braces!
+// const add = num1 => num1 + num2;
 
-// This explains why we CAN access `varOne` and `varTwo` from _inside_ the "code block"
-//  But we CAN NOT access `varTwo` from _outside_ the "code block"
-
-// Example 4
-// ## Fun with "scope trees"
-// ### Let's draw a scope tree for the following:
-let varOne = 'varOne';
-
-if (true) {
-  console.log(varOne);
-  let varTwo = "Hello from varTwo's local scope";
-  console.log(varTwo);
-
-  if (true) {
-    let varFour = "Hello from varFour's local scope";
-  }
-}
-
-if (true) {
-  let varThree = "Hello from varThree's local scope";
-}
-
-console.log(varTwo);
-
-// here is the scope tree for the above code
-
-// global scope (varOne)
-//  local scope (varTwo)
-//    local scope (varFour)
-//  local scope (varThree)
-
-// global scope can only access `varOne`
-// The first local scope can only access `varOne` and `varTwo` and `varFour`
-// The second local scope can only access `varOne` and `varThree`
-
-// Next branch
-// $ git checkout 04-constructor
+// Next
+// $ git checkout 08-arrow-func-activity-start
